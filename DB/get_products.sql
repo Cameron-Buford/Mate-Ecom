@@ -1,0 +1,1 @@
+select * from mate_products;
