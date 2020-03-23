@@ -6,6 +6,7 @@ create table users (
 
 create table mate_products (
     product_id serial primary key,
+    image varchar(500)
     name varchar(200),
     description(1000),
     price decimal
@@ -13,15 +14,22 @@ create table mate_products (
 
 create table gourds (
     gourd_id serial primary key,
-    name varchar(200),
-    description varchar(1000),
-    price decimal
+    product_id int references mate_products(product_id),
 );
 
 create table bombillas (
     bombilla_id serial primary key,
-    name varchar(200),
-    description varchar(1000),
-    price decimal
+    product_id int references mate_products(product_id)
 );
 
+create table wishlist (
+    wishlist_id serial primary key,
+    user_id int references users(user_id),
+    product_id int references mate_products(product_id)
+);
+
+create table cart (
+    cart_id serial primary key,
+    user_id int references user(user_id),
+    product_id int references mate_products(product_id)
+);
